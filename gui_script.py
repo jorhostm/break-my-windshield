@@ -202,6 +202,8 @@ def read_points():
 
     except:
         pass
+    ipoints.clear()
+    inter_data.clear()
     draw_boxes()
 
 def delete_points(event):
@@ -486,7 +488,7 @@ def open_file():
     canvas.itemconfig(fps, text=f'Frame: {i+1}')
     read_points()
     draw_boxes()
-    
+    calibration()
     
     
 newfile = Button(master=buttons,text='Open new file',command=open_file)      
