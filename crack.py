@@ -32,10 +32,11 @@ for filename,df in df_dict.items():
     data.append((avg_speed(df), split[0],split[1],split[2],split[3],split[4],split[5]))
 
 speeds = pd.DataFrame(data, columns=["avg_speed","ws_type","ws_num","crack_num","camera","crack_type","person"])
-
+speeds.loc[speeds["ws_type"]=="SUV", "avg_speed"] *= 33000/25000
+speeds.loc[speeds["ws_type"]=="CC1", "avg_speed"] *= 33000/25000
 view = speeds.loc[speeds.avg_speed < 2000]
-#sns.boxplot(x="ws_type", y="avg_speed", data=view, whis=np.inf)
-sns.stripplot(x="ws_type", y="avg_speed", data=view)
+sns.boxplot(x="ws_type", y="avg_speed", data=view, whis=np.inf)
+#sns.stripplot(x="ws_type", y="avg_speed", data=view)
 plt.xlabel("Windshield series")
 plt.ylabel("Crack speed [m/s]")
 plt.show()
