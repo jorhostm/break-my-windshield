@@ -33,6 +33,9 @@ for filename,df in df_dict.items():
 
 speeds = pd.DataFrame(data, columns=["avg_speed","ws_type","ws_num","crack_num","camera","crack_type","person"])
 
-sns.boxplot(x="ws_type", y="avg_speed", data=speeds[speeds.avg_speed < 2000], whis=np.inf)
-sns.stripplot(x="ws_type", y="avg_speed", data=speeds[speeds.avg_speed < 2000], color=".3")
+view = speeds.loc[speeds.avg_speed < 2000]
+#sns.boxplot(x="ws_type", y="avg_speed", data=view, whis=np.inf)
+sns.stripplot(x="ws_type", y="avg_speed", data=view)
+plt.xlabel("Windshield series")
+plt.ylabel("Crack speed [m/s]")
 plt.show()
